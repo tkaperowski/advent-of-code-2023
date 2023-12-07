@@ -1,2 +1,2 @@
 # advent-of-code-2023
-from https://adventofcode.com/
+Exercises from https://adventofcode.com/
