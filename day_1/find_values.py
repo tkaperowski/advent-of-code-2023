@@ -25,17 +25,21 @@ list_of_lines = text.splitlines()
 # remove empty lines like [..., '', ...]
 list_of_lines = [s for s in list_of_lines if s]
 print(list_of_lines)
-suma = 0
 
-for line in list_of_lines:
-    # find digits as str -> ['6']
-    digits_str = re.findall('\d', line)
-    # str -> int
-    digits = [int(s) for s in digits_str]
-    first = digits[0]
-    last = digits[-1]
-    two_digit = int(str(first)+str(last)) # int -> str to have two-digit number, then str -> int
-    print(two_digit)
-    suma += two_digit
-print(suma)
+def get_sum_from_all_lines(text_in_lines: list) -> int:
+    suma = 0
+    for line in text_in_lines:
+        # find digits as str -> ['6', '3',...]
+        digits_str = re.findall('\d', line)
+        # str -> int
+        digits = [int(s) for s in digits_str]
+        first = digits[0]
+        last = digits[-1]
+        two_digit = int(str(first)+str(last)) # int -> str to have two-digit number, then str -> int
+        # print(two_digit)
+        suma += two_digit
+    return suma
+
+wynik = get_sum_from_all_lines(list_of_lines)
+print(f'Sum of all lines: {wynik}')
 
