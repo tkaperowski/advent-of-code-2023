@@ -1,4 +1,5 @@
 import re
+from find_values import get_sum_from_all_lines
 
 '''
 Your calculation isn't quite right. It looks like some of the digits are actually spelled out with letters: one, two, three, four, five, six, seven, eight, and nine also count as valid "digits".
@@ -72,22 +73,8 @@ for line in text_list:
 
     print(line)
     text_with_fix_letters.append(line)
-print(text_with_fix_letters)
 
-
-suma = 0
-
-for line in text_with_fix_letters:
-    # find digits as str -> ['2']
-    digits_str = re.findall('\d', line)
-    # str -> int
-    digits = [int(s) for s in digits_str]
-    first = digits[0]
-    last = digits[-1]
-    two_digit = int(str(first)+str(last)) # int -> str to have two-digit number, then str -> int
-    print(two_digit)
-    suma += two_digit
-print(suma)
-
+wynik = get_sum_from_all_lines(text_with_fix_letters)
+print(f'Sun of lines with fixed letters: {wynik}')
 
 
