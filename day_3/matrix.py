@@ -1,5 +1,4 @@
 import re
-import time
 
 '''
 The engine schematic (your puzzle input) consists of a visual representation of the engine. There are lots of numbers and symbols you don't really understand, but apparently any number adjacent to a symbol, even diagonally, is a "part number" and should be included in your sum. (Periods (.) do not count as a symbol.)
@@ -25,9 +24,6 @@ Explanation:
 - if there is a symbol ther that a dot '.' next to this digit then add it
 '''
 
-
-
-
 text = '''467..114..
 ...*......
 ..35..633.
@@ -42,23 +38,21 @@ text = '''467..114..
 with open('input.txt', 'r') as f:
     text = f.read()
 
-    # text_lines = text.splitlines()
 lines = text.split('\n')
 
 width = len(lines[0])
 hight = len(lines)
 
-    # Adding '.' to each side of 2D matrix:
-    # add first line with dots
+# Adding '.' to each side of 2D matrix:
+# add first line with dots
 lines.insert(0, '.'*width)
-    # add end line with dots
+# add end line with dots
 lines.append('.'*width)
-    # add '.' to start and end of each line
+# add '.' to start and end of each line
 for i in range(len(lines)):
     lines[i] = '.'+lines[i]+'.'
 
 sum = 0
-start = time.time()
 
 for i in range(len(lines)):
     pattern1 = re.compile('\d+')    # compile patter '\d+' to pattern object for efficiency
@@ -85,14 +79,8 @@ for i in range(len(lines)):
         # check '.' in the line above and below the digit
         for d in range(digit_length+2): # check indexes from end(), +2 is to check one index below match.start and also range() skips end value
 
-            # check '.' in line above
-            if lines[i-1][m.end()-d] != '.':
-                print(f'adding {digit} - there is a symbol other than dot "." next to it')
-                sum += digit
-                break # skip this for as digit done
-
-            # check '.' in line below
-            if lines[i+1][m.end()-d] != '.':
+            # check '.' in line above or in line below
+            if lines[i-1][m.end()-d] != '.' or lines[i+1][m.end()-d] != '.':
                 print(f'adding {digit} - there is a symbol other than dot "." next to it')
                 sum += digit
                 break # skip this for as digit done
@@ -100,15 +88,5 @@ for i in range(len(lines)):
         # print when sum not changed in this iteration meaning break wasn't called
         if sum_now == sum:
             print(f'ignoring {digit} as only dots next to it')
-
-stop = time.time()
-print(start)
-print(stop)
-time_with_re_compile_in_for = stop - start
-print(time_with_re_compile_in_for)
 print(f'Suma wsyatlich liczb sąsiadujących z symbolem innym niż "." wynosi: {sum}')
-
-
-
-
 
