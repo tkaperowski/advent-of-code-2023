@@ -18,7 +18,7 @@ Here is an example engine schematic:
 In this schematic, two numbers are not part numbers because they are not adjacent to a symbol: 114 (top right) and 58 (middle right). Every other number is adjacent to a symbol and so is a part number; their sum is 4361.
 
 Explanation:
-- add first lind and end line with dots for easier checking
+- add first and last line with dots for easier checking, then add dot at start and end of each line
 - get digits with finditer()
 - for each digit check all neighbour indexes
 - if there is a symbol ther that a dot '.' next to this digit then add it
