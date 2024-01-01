@@ -1,6 +1,12 @@
 '''
-For example:
-intput_example.txt
+Script:
+- reads intput_example.txt or intput.txt
+- get list of seeds
+- make maps based on line number:
+- from each map make dict with pairs: source_lineNumber: value, ...  values are from input file
+- enumerate is used to create pairs with indexes
+- each function e.g. get_soil_from_seed() returns desination based on source
+- get_soil_from_seed calls another function based on maps
 
 The almanac starts by listing which seeds need to be planted: seeds 79, 14, 55, and 13.
 
