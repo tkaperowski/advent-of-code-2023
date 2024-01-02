@@ -3,7 +3,7 @@ Time:      71530
 Distance:  940200
 
 Now, one race.
-Code is the same, only input is different.
+Code is the same as boat_race.py, only input is different.
 '''
 import re
 
