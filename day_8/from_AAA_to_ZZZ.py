@@ -58,7 +58,7 @@ for i in maps:
 
 step_number = 0
 
-# find AAA map
+# find tuple for AAA map
 start_element = 'AAA'
 map_tuple = find_map(start_element)
 
