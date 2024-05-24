@@ -15,9 +15,8 @@ For example:
 In this example, the numbers are 12, 38, 15, and 77. Adding these together produces 142.
 '''
 
-text = open('data.txt', 'r').read()
-# with open('data_example.txt', 'r') as f:
-#     text = f.read()
+with open('data.txt', 'r') as file:
+    text = file.read()
 
 # from file to list of lines -> ['str', ...]
 list_of_lines = text.splitlines()
@@ -30,14 +29,17 @@ def get_sum_from_all_lines(text_in_lines: list) -> int:
     suma = 0
     for line in text_in_lines:
         # find digits as str -> ['6', '3',...]
-        digits_str = re.findall('\d', line)
+        digits_str = re.findall(r'\d', line)
         # str -> int
         digits = [int(s) for s in digits_str]
-        first = digits[0]
-        last = digits[-1]
-        two_digit = int(str(first)+str(last)) # int -> str to have two-digit number, then str -> int
-        # print(two_digit)
-        suma += two_digit
+        # check if list not empty, for list index out of range error
+        if digits_str:
+            first = digits[0] # int
+            last = digits[-1] # int
+            # two_digit = int(str(first)+str(last)) # int -> str to have two-digit number, then str -> int
+            two_digit = int(f'{first}{last}')
+            # print(two_digit)
+            suma += two_digit
     return suma
 
 wynik = get_sum_from_all_lines(list_of_lines)
