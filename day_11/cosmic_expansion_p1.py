@@ -78,14 +78,25 @@ def find_hash_positions(data):
     return hash_positions
 
 
+# def calculate_paths(data):
+#     total_sum = 0
+#     num_tuples = len(data)
+#     # iterate each tuple
+#     for index, main_tuple in enumerate(data):
+#         while index < num_tuples - 1:
+#             total_sum += abs(main_tuple[0] - data[index + 1][0]) + abs(main_tuple[1] - data[index + 1][1])
+#             index += 1
+#     return total_sum
+
+
 def calculate_paths(data):
     total_sum = 0
     num_tuples = len(data)
     # iterate each tuple
-    for index, main_tuple in enumerate(data):
-        while index < num_tuples - 1:
-            total_sum += abs(main_tuple[0] - data[index + 1][0]) + abs(main_tuple[1] - data[index + 1][1])
-            index += 1
+    for i in range(num_tuples):
+        # iterate over each following tuple
+        for j in range(i + 1, num_tuples):
+            total_sum += abs(data[i][0] - data[j][0]) + abs(data[i][1] - data[j][1])
     return total_sum
 
 
