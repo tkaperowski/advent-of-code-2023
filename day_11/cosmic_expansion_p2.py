@@ -1,5 +1,11 @@
 """
 the same as part1 but now each empty row and column is replaced by 1000000 rows and columns
+- cannot add 1000000 rows and columns to the list as this cause performance issue, code cannot finish
+- we do not add any empty rows or columns to lines which is list of strings
+- we add 999999 value (not 1000000 as we replace 1 row for 1000000 rows) to each empty row and column which is on the
+path between two hashes
+- such solution speed up a lot
+- WAŻNE!!! working on huge list, dict slow down the code a lot!!!
 """
 import copy
 from datetime import datetime
@@ -30,31 +36,6 @@ def find_empty_rows(data):
             empty_rows.append(i)
     print(empty_rows)
     return empty_rows
-
-
-def add_empty_rows(data, row_indexes):
-    print(id(data))
-    # iterate from the end
-    for row_index in reversed(row_indexes):
-        i = 0
-        while i < 9:
-            data.insert(row_index, ',' * len(data[0]))
-            i += 1
-    return data
-
-
-def add_empty_columns(data, column_indexes):
-    # number of rows
-    num_rows = len(data)
-    # iterate each row
-    for i in range(num_rows):
-        # iterate each column_indexes
-        for column_index in reversed(column_indexes):
-            j = 0
-            while j < 9:
-                data[i] = data[i][:column_index] + ',' + data[i][column_index:]
-                j += 1
-    return data
 
 
 def find_hash_positions(data):
@@ -114,11 +95,6 @@ copy_lines = copy.deepcopy(lines)
 empty_columns = find_empty_columns(lines)
 # find row indexes that do not contain '#'
 empty_rows = find_empty_rows(lines)
-
-# add row with '.' for empty_rows
-lines_with_rows = add_empty_rows(copy_lines, empty_rows)
-# add column with '.' for empty_columns
-lines_with_rows_and_columns = add_empty_columns(lines_with_rows, empty_columns)
 
 # find hash positions from lines
 hash_positions = find_hash_positions(lines)
